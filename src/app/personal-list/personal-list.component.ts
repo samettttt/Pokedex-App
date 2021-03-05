@@ -17,7 +17,7 @@ export class PersonalListComponent implements OnInit, OnDestroy {
               private pokemonService: PokemonsService) { }
 
   ngOnInit(): void {
-    const details = this.pokemonListService.personalList.map((i: any) => this.pokemonService.getPokemon(i.name));
+    const details = this.pokemonListService.personalList.map((i: any) => this.pokemonService.getPokemon(i));
     this.addSubscription = concat(...details).subscribe((response: any) => {
       console.log(response)
       this.pokemons.push(response);
@@ -34,5 +34,9 @@ export class PersonalListComponent implements OnInit, OnDestroy {
 
   set addSubscription(subscription: Subscription) {
     this.subscriptions.push(subscription);
+  }
+
+  remove(pokemon: string) {
+    this.pokemonListService.removeFromPersonalList(pokemon);
   }
 }

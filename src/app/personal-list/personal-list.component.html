@@ -1,5 +1,18 @@
+<div class="row justify-content-md-center topText">
+    <p></p>
+    <div class="col-sm-5">
+        <h1>Your Personal list!</h1>
+        <p>This is where you can see all the Pokemons you've caught so far!</p>
+    </div>
+</div>
+
 <div class="row">
     <div *ngFor="let pokemon of pokemons;" class="col-sm-3 pokeCard">
-        <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+        <mdb-card>
+            <a routerLink="/" (click)="remove(pokemon.name)" class="mt-1 d-flex flex-row-reverse top">
+                Remove
+            </a>
+            <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+        </mdb-card>
     </div>
 </div>

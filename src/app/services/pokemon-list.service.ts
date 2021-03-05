@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { PokemonListElement } from '../pokemon-list-element';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonListService {
-  private _personalList: Array<PokemonListElement> = [];
-  private _wishList: Array<PokemonListElement> = [];
+  private _personalList: Array<string> = [];
+  private _wishList: Array<string> = [];
 
   constructor(private cookieService: CookieService) { 
     const jsonPersonal = this.cookieService.get('pokedex-cookie-personalList');
@@ -29,30 +28,49 @@ export class PokemonListService {
     return this._wishList;
   }
 
-  caught() {
-
+  catch(pokemon: string) {
+    if(!this._personalList.some(p => p == pokemon)) {
+      this._wishList = this._wishList.filter(p => p !== pokemon);
+      this._personalList.push(pokemon);
+      this.saveToCookie('wishList');
+      this.saveToCookie('personalList');
+    }
   }
 
-  addToWishList(pokemon: PokemonListElement): Array<PokemonListElement> {
-    if(!this._wishList.some(p => p.name == pokemon.name) && !this._personalList.some(p => p.name == pokemon.name)) {
+  addToWishList(pokemon: string): Array<string> {
+    if(!this._wishList.some(p => p == pokemon) && !this._personalList.some(p => p == pokemon)) {
       this._wishList.push(pokemon);
       this.saveToCookie('wishList');
     }
     return this.wishList;
   }
 
-  addToPersonalList(pokemon: PokemonListElement): Array<PokemonListElement> {
-    if(!this._personalList.some(p => p.name == pokemon.name)) {
+  removeFromWishList(pokemon: string): Array<string> {
+    if(this._wishList.some(p => p == pokemon)) {
+      this._wishList = this._wishList.filter(p => p !== pokemon);
+      this.saveToCookie('wishList');
+    }
+    return this.wishList;
+  }
+
+  addToPersonalList(pokemon: string): Array<string> {
+    if(!this._personalList.some(p => p == pokemon)) {
       this._personalList.push(pokemon);
       this.saveToCookie('personalList');
     }
     return this.personalList;
   }
 
+  removeFromPersonalList(pokemon: string): Array<string> {
+    if(this._personalList.some(p => p == pokemon)) {
+      this._personalList = this._personalList.filter(p => p !== pokemon);
+      this.saveToCookie('personalList');
+    }
+    return this.wishList;
+  }
+
   saveToCookie(list: string) {
     let arr = list === 'wishList' ? this.wishList : this.personalList;
     this.cookieService.set(`pokedex-cookie-${list}`, JSON.stringify(arr))
   }
-
-
 }

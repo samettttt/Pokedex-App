@@ -34,19 +34,11 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
   }
 
   addToWishlist() {
-    let newPoke = {
-      name: "" + this.pokemon.name,
-      customname: ""
-    }
-    this.pokemonListService.addToWishList(newPoke);
+    this.pokemonListService.addToWishList(this.pokemon.name);
   }
 
   addToPersonallist() {
-    let newPoke = {
-      name: "" + this.pokemon.name,
-      customname: ""
-    }
-    this.pokemonListService.addToPersonalList(newPoke);
+    this.pokemonListService.addToPersonalList(this.pokemon.name);
   }
 
 }

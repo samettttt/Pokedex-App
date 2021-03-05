@@ -1,5 +1,23 @@
+<div class="row justify-content-md-center topText">
+    <p></p>
+    <div class="col-sm-5">
+        <h1>Wishlist</h1>
+        <p>Here you can see all the pokemons you want to catch!</p>
+        <p>Click on "Catch!" to add them to your Personal list!</p>
+    </div>
+</div>
 <div class="row">
     <div *ngFor="let pokemon of pokemons;" class="col-sm-3 pokeCard">
-        <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+        <mdb-card>
+            <div class="row top">
+                <a routerLink="/personal" (click)="catch(pokemon.name)" class="col-sm-8">
+                    Catch!
+                </a>
+                <a routerLink="/" (click)="remove(pokemon.name)" class="col-sm-4">
+                    Remove
+                </a>
+            </div>
+            <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+        </mdb-card>
     </div>
 </div>

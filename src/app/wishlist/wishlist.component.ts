@@ -17,7 +17,7 @@ export class WishlistComponent implements OnInit {
               private pokemonService: PokemonsService) { }
 
   ngOnInit(): void {
-    const details = this.pokemonListService.wishList.map((i: any) => this.pokemonService.getPokemon(i.name));
+    const details = this.pokemonListService.wishList.map((i: any) => this.pokemonService.getPokemon(i));
     this.addSubscription = concat(...details).subscribe((response: any) => {
       this.pokemons.push(response);
     });
@@ -33,5 +33,13 @@ export class WishlistComponent implements OnInit {
 
   set addSubscription(subscription: Subscription) {
     this.subscriptions.push(subscription);
+  }
+
+  catch(pokemon: string) {
+    this.pokemonListService.catch(pokemon);
+  }
+
+  remove(pokemon: string) {
+    this.pokemonListService.removeFromWishList(pokemon);
   }
 }

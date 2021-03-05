@@ -38,6 +38,8 @@
 
 <div class="row">
     <div *ngFor="let pokemon of pokemons;" class="col-sm-3 pokeCard">
+      <mdb-card>
         <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+      </mdb-card>
     </div>
 </div>

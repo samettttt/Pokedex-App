@@ -8,6 +8,7 @@ export class PokemonPaginationService {
   private _pageArray = new Array();
   private _allPokemons: any[] = [];
   private _searchPerformed: boolean = false;
+  private _activePage: number = 0;
   constructor() { }
 
   get count(): number {
@@ -37,5 +38,13 @@ export class PokemonPaginationService {
 
   set searchPerformed(bool: boolean) {
     this._searchPerformed = bool;
+  }
+
+  get activePage(): number {
+    return this._activePage;
+  }
+
+  set activePage(number: number) {
+    this._activePage = number;
   }
 }

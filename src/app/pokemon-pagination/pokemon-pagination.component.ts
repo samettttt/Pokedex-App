@@ -85,7 +85,7 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
   selectPage(number: number) {
     if(!(number < 0 || number > this.getPageArray().length - 1)) {
       console.log("test")
-      this.activePage = number;
+      this.paginationService.activePage = number;
       this.loadOffset(number*200);
     }
   }
@@ -96,6 +96,10 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
 
   getSearchPerformed() {
     return this.paginationService.searchPerformed;
+  }
+
+  getActivePage() {
+    return this.paginationService.activePage;
   }
 
   search() {

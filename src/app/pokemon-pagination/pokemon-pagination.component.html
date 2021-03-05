@@ -14,21 +14,21 @@
 <nav *ngIf="!getSearchPerformed()">
     <ul class="pagination pg-red justify-content-center">
       <li class="page-item">
-        <a class="page-link" aria-label="Previous" (click)='selectPage(activePage - 1)' mdbWavesEffect>
+        <a class="page-link" aria-label="Previous" (click)='selectPage(getActivePage() - 1)' mdbWavesEffect>
           <span aria-hidden="true">&laquo;</span>
           <span class="sr-only">Previous</span>
         </a>
       </li>
       <div *ngFor="let a of getPageArray(); let index = index">
         <li class="page-item" 
-            [ngClass]="(activePage === index) ? 'active': ''">
+            [ngClass]="(getActivePage() === index) ? 'active': ''">
             <a class="page-link" (click)='selectPage(index)' mdbWavesEffect>
                 {{index + 1}}
             </a>
         </li>
       </div>
       <li class="page-item">
-        <a class="page-link" aria-label="Next" (click)='selectPage(activePage + 1)' mdbWavesEffect>
+        <a class="page-link" aria-label="Next" (click)='selectPage(getActivePage() + 1)' mdbWavesEffect>
           <span aria-hidden="true">&raquo;</span>
           <span class="sr-only">Next</span>
         </a>

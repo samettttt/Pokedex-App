@@ -12,7 +12,7 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
 
   loading: boolean = false;
   subscriptions: Subscription[] = [];
-  activePage = 1;
+  activePage = 0;
   constructor(private pokemonsService: PokemonsService) { }
 
   ngOnInit(): void {
@@ -77,7 +77,11 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
   }
 
   selectPage(number: number) {
-    this.activePage = number;
-    this.loadOffset(number*100);
+    console.log(number);
+    if(!(number < 0 || number > this.getPageArray().length - 1)) {
+      console.log("test")
+      this.activePage = number;
+      this.loadOffset(number*100);
+    }
   }
 }

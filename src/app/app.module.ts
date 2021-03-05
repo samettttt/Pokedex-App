@@ -11,6 +11,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { HomeComponent } from './home/home.component';
 import { PokemonPaginationComponent } from './pokemon-pagination/pokemon-pagination.component';
 import { PokemonsService } from './services/pokemons.service';
+import { PokemonDetailComponent } from './pokemon-pagination/pokemon-detail/pokemon-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PokemonsService } from './services/pokemons.service';
     PersonalListComponent,
     WishlistComponent,
     HomeComponent,
-    PokemonPaginationComponent
+    PokemonPaginationComponent,
+    PokemonDetailComponent
   ],
   imports: [
     MDBBootstrapModule.forRoot(),

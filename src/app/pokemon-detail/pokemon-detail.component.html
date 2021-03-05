@@ -21,8 +21,8 @@
             <app-pokemon-stats [stats]="pokemon.stats"></app-pokemon-stats>
         </mdb-card-text>
     
-        <a href="#" mdbBtn color="primary" mdbWavesEffect>Add to Personal list</a>
-        <a href="#" mdbBtn color="primary" mdbWavesEffect>Add to Wishlist</a>
+        <a mdbBtn color="primary" (click)="addToPersonallist()" mdbWavesEffect>Add to Personal list</a>
+        <a mdbBtn color="primary" (click)="addToWishlist()" mdbWavesEffect>Add to Wishlist</a>
         </mdb-card-body>
     </mdb-card>
 </div>

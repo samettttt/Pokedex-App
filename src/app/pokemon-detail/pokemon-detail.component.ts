@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Subscription } from 'rxjs';
+import { PokemonListService } from '../services/pokemon-list.service';
 import { PokemonsService } from '../services/pokemons.service';
 
 @Component({
@@ -15,12 +16,12 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private pokemonService: PokemonsService,
+    private pokemonListService: PokemonListService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
-    let temp = "" + this.route.snapshot.paramMap.get('name');
-    this.subscription = this.pokemonService.getPokemon(temp)
+    this.subscription = this.pokemonService.getPokemon("" + this.route.snapshot.paramMap.get('name'))
       .subscribe((p: any) => {
         this.pokemon = p;
         this.loaded = true;
@@ -30,6 +31,22 @@ export class PokemonDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() : void {
     this.subscription.unsubscribe();
+  }
+
+  addToWishlist() {
+    let newPoke = {
+      name: "" + this.pokemon.name,
+      customname: ""
+    }
+    this.pokemonListService.addToWishList(newPoke);
+  }
+
+  addToPersonallist() {
+    let newPoke = {
+      name: "" + this.pokemon.name,
+      customname: ""
+    }
+    this.pokemonListService.addToPersonalList(newPoke);
   }
 
 }

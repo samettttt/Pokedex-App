@@ -1,1 +1,5 @@
-<p>personal-list works!</p>
+<div class="row">
+    <div *ngFor="let pokemon of pokemons;" class="col-sm-3 pokeCard">
+        <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+    </div>
+</div>

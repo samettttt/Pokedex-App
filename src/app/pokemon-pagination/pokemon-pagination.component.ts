@@ -12,7 +12,6 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
 
   loading: boolean = false;
   subscriptions: Subscription[] = [];
-  activePage = 0;
   searchString = '';
   
   constructor(private pokemonsService: PokemonsService,
@@ -29,18 +28,6 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroySubscriptions();
-  }
-
-  private destroySubscriptions() {
-    this.subscriptions.forEach(subscription => subscription ? subscription.unsubscribe() : 0);
-  }
-
-  set addSubscription(subscription: Subscription) {
-    this.subscriptions.push(subscription);
-  }
-
-  get pokemons(): any[] {
-    return this.pokemonsService.pokemons;
   }
 
   loadNextPokemons(): void {
@@ -119,10 +106,22 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
     this.searchString = "";
     this.loadOffset(0);
     this.paginationService.searchPerformed = false;
-    this.activePage = 0;
+    this.paginationService.activePage = 0;
   }
 
   checkSearchString(): boolean {
     return !this.searchString || /^\s*$/.test(this.searchString) || this.searchString.length === 0 || !this.searchString.trim()
+  }
+
+  private destroySubscriptions() {
+    this.subscriptions.forEach(subscription => subscription ? subscription.unsubscribe() : 0);
+  }
+
+  set addSubscription(subscription: Subscription) {
+    this.subscriptions.push(subscription);
+  }
+
+  get pokemons(): any[] {
+    return this.pokemonsService.pokemons;
   }
 }

@@ -1,0 +1,8 @@
+<tbody>
+    <div *ngFor="let stat of stats">
+        <tr mdbTableCol>
+            <th class="pokeThead">{{stat.stat.name | titlecase}}</th>
+            <td>{{stat.base_stat}}</td>
+        </tr>
+    </div>
+</tbody>

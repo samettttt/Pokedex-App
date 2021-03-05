@@ -1,0 +1,28 @@
+<div *ngIf="loaded" class="row justify-content-md-center detailPage">
+    <a class="returnBtn" routerLink="/" color="primary" mdbWavesEffect>
+        <h5 class="waves-effect p-2" mdbWavesEffect>
+            < Go Back
+        </h5>
+    </a>
+    <div class="col-sm-4"></div>
+    <img class="col-sm-4" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{pokemon.id}}.svg" alt="Card image cap"/>
+    <div class="col-sm-4"></div>
+
+    <mdb-card class="col-sm-5 pokeInfo">
+        <mdb-card-body>
+        <mdb-card-title>
+            <h4>{{pokemon.name| titlecase}}</h4>
+        </mdb-card-title>
+        
+        <mdb-card-text>
+            <h5>Types: <span *ngFor="let type of pokemon.types">{{type.type.name  + " " | titlecase}}</span></h5> 
+        </mdb-card-text>
+        <mdb-card-text> 
+            <app-pokemon-stats [stats]="pokemon.stats"></app-pokemon-stats>
+        </mdb-card-text>
+    
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Add to Personal list</a>
+        <a href="#" mdbBtn color="primary" mdbWavesEffect>Add to Wishlist</a>
+        </mdb-card-body>
+    </mdb-card>
+</div>

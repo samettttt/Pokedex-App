@@ -1,8 +1,11 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark red">
 
     <mdb-navbar-brand>
-      <a class="navbar-brand" routerLink="/">
-        Pokedex
+      <a class="navbar-brand" routerLink="">
+        <img
+            class="pokemon-logo"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png"
+        />
       </a>
     </mdb-navbar-brand>
     
@@ -11,13 +14,13 @@
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink="/">Home</a>
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect routerLink="/personal">Personal List</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink="wishlist">Wishlist</a>
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/wishlist">Wishlist</a>
         </li>
   
       </ul>

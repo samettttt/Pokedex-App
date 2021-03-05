@@ -11,7 +11,7 @@
     <button type="submit" mdbBtn color="primary" (click)="reset()">Reset</button>
 </div>
 
-<nav *ngIf="!searchPerformed">
+<nav *ngIf="!getSearchPerformed()">
     <ul class="pagination pg-red justify-content-center">
       <li class="page-item">
         <a class="page-link" aria-label="Previous" (click)='selectPage(activePage - 1)' mdbWavesEffect>

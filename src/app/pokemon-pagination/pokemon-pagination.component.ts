@@ -14,7 +14,6 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   activePage = 0;
   searchString = '';
-  searchPerformed = false;
   
   constructor(private pokemonsService: PokemonsService,
               private paginationService: PokemonPaginationService) { }
@@ -95,13 +94,17 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
     return this.paginationService.pageArray;
   }
 
+  getSearchPerformed() {
+    return this.paginationService.searchPerformed;
+  }
+
   search() {
     if(this.checkSearchString()) {
       this.loadOffset(0);
-      this.searchPerformed = false;
+      this.paginationService.searchPerformed = false;
     } else {
       this.destroySubscriptions();
-      this.searchPerformed = true;
+      this.paginationService.searchPerformed = true;
       this.pokemonsService.pokemons = [];
       this.pokemonsService.pokemons = this.paginationService.allPokemons.filter(x => x.name.includes(this.searchString) || x.id == parseInt(this.searchString));
     }
@@ -111,14 +114,8 @@ export class PokemonPaginationComponent implements OnInit, OnDestroy {
     this.destroySubscriptions();
     this.searchString = "";
     this.loadOffset(0);
-    this.searchPerformed = false;
+    this.paginationService.searchPerformed = false;
     this.activePage = 0;
-  }
-
-  getReset() {
-    return () => {
-      return this.reset();
-    }
   }
 
   checkSearchString(): boolean {
